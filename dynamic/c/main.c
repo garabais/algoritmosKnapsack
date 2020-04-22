@@ -2,7 +2,8 @@
 #include<stdlib.h>
 
 // Defining the data like this to make migration to unsigned long long easy if necesary
-#define number unsigned long
+// if type changed to unsigned long long  change all printf/scanf to %llu
+typedef unsigned long number;
 
 number max(number a, number b) { return (a > b)? a : b; }
 
@@ -33,7 +34,7 @@ void display(number **arr, number I, number J) {
     number i, j;
     for (i = 0; i <= I; i++) {
         for (j = 0; j <= J; j++) {
-            printf("%number ", arr[i][j]);
+            printf("%lu ", arr[i][j]);
         }
         printf("\n");
     }
@@ -50,24 +51,24 @@ void freeMatrix(number **arr, number I) {
 int main() {
     number i, n, W;
 
-    scanf("%number", &n);
+    scanf("%lu", &n);
 
     number *val = (number*)malloc(n * sizeof(long)),
         *wt  = (number*)malloc(n * sizeof(long));
 
     for(i = 0;i < n; ++i){
-    	scanf("%number", &val[i]);
+    	scanf("%lu", &val[i]);
     }
 
     for(i = 0;i < n; ++i){
-    	scanf("%number", &wt[i]);
+    	scanf("%lu", &wt[i]);
     }
 
-    scanf("%number", &W);
+    scanf("%lu", &W);
 
     number **solution = knapSack(W, wt, val, n);
 
-    printf("%number\n", solution[n][W]);
+    printf("%lu\n", solution[n][W]);
 
     display(solution, n, W);
 
