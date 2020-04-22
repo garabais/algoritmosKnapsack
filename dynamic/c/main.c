@@ -6,7 +6,7 @@ unsigned long max(unsigned long a, unsigned long b) { return (a > b)? a : b; }
 unsigned long** knapSack(unsigned long W, unsigned long *wt, unsigned long *val, unsigned long n) {
     unsigned long i, w;
 
-    unsigned long **K = (long**) malloc((n+1) * sizeof(long*));
+    unsigned long **K = (unsigned long**) malloc((n+1) * sizeof(long*));
     K[0] = (unsigned long *)calloc(W+1, sizeof(long));
 
     for (i = 1; i <= n; i++) {
@@ -49,8 +49,8 @@ int main() {
 
     scanf("%lu", &n);
 
-    unsigned long *val = (long*)malloc(n * sizeof(long)),
-        *wt  = (long*)malloc(n * sizeof(long));
+    unsigned long *val = (unsigned long*)malloc(n * sizeof(long)),
+        *wt  = (unsigned long*)malloc(n * sizeof(long));
 
     for(i = 0;i < n; ++i){
     	scanf("%lu", &val[i]);
@@ -64,14 +64,15 @@ int main() {
 
     unsigned long **solution = knapSack(W, wt, val, n);
 
-    printf("%d\n", solution[n][W]);
+    printf("%lu\n", solution[n][W]);
 
-    display(solution, n+1, W);
+    display(solution, n, W);
+
 
     //TODO: mostrar items que faltan
 
     //liberar memoria usada
-    freeMatrix(solution, n+1);
+    freeMatrix(solution, n);
     free(val);
     free(wt);
 
