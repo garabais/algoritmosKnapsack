@@ -1,16 +1,16 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-int max(int a, int b) { return (a > b)? a : b; }
+unsigned long max(unsigned long a, unsigned long b) { return (a > b)? a : b; }
 
-int** knapSack(int W, int *wt, int *val, int n) {
-    int i, w;
+unsigned long** knapSack(unsigned long W, unsigned long *wt, unsigned long *val, unsigned long n) {
+    unsigned long i, w;
 
-    int **K = (int**) malloc((n+1) * sizeof(int*));
-    K[0] = (int *)calloc(W+1, sizeof(int));
+    unsigned long **K = (long**) malloc((n+1) * sizeof(long*));
+    K[0] = (unsigned long *)calloc(W+1, sizeof(long));
 
     for (i = 1; i <= n; i++) {
-        K[i] = (int *)malloc((W+1) * sizeof(int));
+        K[i] = (unsigned long *)malloc((W+1) * sizeof(long));
         for (w = 0; w <= W; w++) {
             if (w==0){
                 K[i][w] = 0;
@@ -26,18 +26,18 @@ int** knapSack(int W, int *wt, int *val, int n) {
     
 }
 
-void display(int **arr, int I, int J) {
-    int i, j;
+void display(unsigned long **arr, unsigned long I, unsigned long J) {
+    unsigned long i, j;
     for (i = 0; i <= I; i++) {
         for (j = 0; j <= J; j++) {
-            printf("%d ", arr[i][j]);
+            printf("%lu ", arr[i][j]);
         }
         printf("\n");
     }
 }
 
-void freeMatrix(int **arr, int I) {
-    int i;
+void freeMatrix(unsigned long **arr, unsigned long I) {
+    unsigned long i;
     for (i = 0; i <= I; i++) {
         free(arr[i]);
     }
@@ -45,24 +45,24 @@ void freeMatrix(int **arr, int I) {
 }
 
 int main() {
-    int i, n, W;
+    unsigned long i, n, W;
 
-    scanf("%d", &n);
+    scanf("%lu", &n);
 
-    int *val = (int*)malloc(n * sizeof(int)),
-        *wt  = (int*)malloc(n * sizeof(int));
+    unsigned long *val = (long*)malloc(n * sizeof(long)),
+        *wt  = (long*)malloc(n * sizeof(long));
 
     for(i = 0;i < n; ++i){
-    	scanf("%d", &val[i]);
+    	scanf("%lu", &val[i]);
     }
 
     for(i = 0;i < n; ++i){
-    	scanf("%d", &wt[i]);
+    	scanf("%lu", &wt[i]);
     }
 
-    scanf("%d", &W);
+    scanf("%lu", &W);
 
-    int **solution = knapSack(W, wt, val, n);
+    unsigned long **solution = knapSack(W, wt, val, n);
 
     printf("%d\n", solution[n][W]);
 
