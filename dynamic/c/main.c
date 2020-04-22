@@ -1,16 +1,18 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-unsigned long max(unsigned long a, unsigned long b) { return (a > b)? a : b; }
+#define lu unsigned long
 
-unsigned long** knapSack(unsigned long W, unsigned long *wt, unsigned long *val, unsigned long n) {
-    unsigned long i, w;
+lu max(lu a, lu b) { return (a > b)? a : b; }
 
-    unsigned long **K = (unsigned long**) malloc((n+1) * sizeof(long*));
-    K[0] = (unsigned long *)calloc(W+1, sizeof(long));
+lu** knapSack(lu W, lu *wt, lu *val, lu n) {
+    lu i, w;
+
+    lu **K = (lu**) malloc((n+1) * sizeof(long*));
+    K[0] = (lu *)calloc(W+1, sizeof(long));
 
     for (i = 1; i <= n; i++) {
-        K[i] = (unsigned long *)malloc((W+1) * sizeof(long));
+        K[i] = (lu *)malloc((W+1) * sizeof(long));
         for (w = 0; w <= W; w++) {
             if (w==0){
                 K[i][w] = 0;
@@ -26,8 +28,8 @@ unsigned long** knapSack(unsigned long W, unsigned long *wt, unsigned long *val,
     
 }
 
-void display(unsigned long **arr, unsigned long I, unsigned long J) {
-    unsigned long i, j;
+void display(lu **arr, lu I, lu J) {
+    lu i, j;
     for (i = 0; i <= I; i++) {
         for (j = 0; j <= J; j++) {
             printf("%lu ", arr[i][j]);
@@ -36,8 +38,8 @@ void display(unsigned long **arr, unsigned long I, unsigned long J) {
     }
 }
 
-void freeMatrix(unsigned long **arr, unsigned long I) {
-    unsigned long i;
+void freeMatrix(lu **arr, lu I) {
+    lu i;
     for (i = 0; i <= I; i++) {
         free(arr[i]);
     }
@@ -45,12 +47,12 @@ void freeMatrix(unsigned long **arr, unsigned long I) {
 }
 
 int main() {
-    unsigned long i, n, W;
+    lu i, n, W;
 
     scanf("%lu", &n);
 
-    unsigned long *val = (unsigned long*)malloc(n * sizeof(long)),
-        *wt  = (unsigned long*)malloc(n * sizeof(long));
+    lu *val = (lu*)malloc(n * sizeof(long)),
+        *wt  = (lu*)malloc(n * sizeof(long));
 
     for(i = 0;i < n; ++i){
     	scanf("%lu", &val[i]);
@@ -62,7 +64,7 @@ int main() {
 
     scanf("%lu", &W);
 
-    unsigned long **solution = knapSack(W, wt, val, n);
+    lu **solution = knapSack(W, wt, val, n);
 
     printf("%lu\n", solution[n][W]);
 
