@@ -2,7 +2,7 @@
 #include<stdlib.h>
 
 int main() {
-    size_t i, n, W;
+    int i, n, W;
 
     scanf("%d", &n);
 

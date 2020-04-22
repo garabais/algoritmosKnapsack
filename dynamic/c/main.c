@@ -3,8 +3,8 @@
 
 int max(int a, int b) { return (a > b)? a : b; }
 
-int** knapSack(size_t W, int *wt, int *val, size_t n) {
-    size_t i, w;
+int** knapSack(int W, int *wt, int *val, int n) {
+    int i, w;
 
     int **K = (int**) malloc((n+1) * sizeof(int*));
     K[0] = (int *)calloc(W+1, sizeof(int));
@@ -26,8 +26,8 @@ int** knapSack(size_t W, int *wt, int *val, size_t n) {
     
 }
 
-void display(int **arr, size_t I, size_t J) {
-    size_t i, j;
+void display(int **arr, int I, int J) {
+    int i, j;
     for (i = 0; i <= I; i++) {
         for (j = 0; j <= J; j++) {
             printf("%d ", arr[i][j]);
@@ -36,8 +36,8 @@ void display(int **arr, size_t I, size_t J) {
     }
 }
 
-void freeMatrix(int **arr, size_t I) {
-    size_t i;
+void freeMatrix(int **arr, int I) {
+    int i;
     for (i = 0; i <= I; i++) {
         free(arr[i]);
     }
@@ -45,7 +45,7 @@ void freeMatrix(int **arr, size_t I) {
 }
 
 int main() {
-    size_t i, n, W;
+    int i, n, W;
 
     scanf("%d", &n);
 
