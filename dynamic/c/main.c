@@ -10,11 +10,11 @@ number max(number a, number b) { return (a > b)? a : b; }
 number** knapSack(number W, number *wt, number *val, number n) {
     number i, w;
 
-    number **K = (number**) malloc((n+1) * sizeof(long*));
-    K[0] = (number*) calloc(W+1, sizeof(long));
+    number **K = (number**) malloc((n+1) * sizeof(number*));
+    K[0] = (number*) calloc(W+1, sizeof(number));
 
     for (i = 1; i <= n; i++) {
-        K[i] = (number*) malloc((W+1) * sizeof(long));
+        K[i] = (number*) malloc((W+1) * sizeof(number));
         for (w = 0; w < wt[i-1]; w++) {
             K[i][w] = K[i-1][w];
         }
@@ -65,8 +65,8 @@ int main() {
 
     scanf("%lu", &n);
 
-    number *val = (number*) malloc(n * sizeof(long)),
-           *wt  = (number*) malloc(n * sizeof(long));
+    number *val = (number*) malloc(n * sizeof(number)),
+           *wt  = (number*) malloc(n * sizeof(number));
 
     for (i = 0;i < n; ++i) {
     	scanf("%lu", &val[i]);
@@ -82,10 +82,10 @@ int main() {
 
     printf("%lu\n", solution[n][W]);
 
-    display(solution, n, W);
-
     //DONE: mostrar items que faltan
     printObjects(solution, n, W, wt);
+
+    display(solution, n, W);
 
     //liberar memoria usada
     freeMatrix(solution, n);
